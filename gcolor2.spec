@@ -11,11 +11,17 @@ Source0:	http://dl.sourceforge.net/project/gcolor2/gcolor2/0.4/%{name}-%{version
 # Source0-md5:	223a126b8a87234d1552be4be4140789
 Source1:	%{name}.desktop
 URL:		http://gcolor2.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	freetype-devel
 BuildRequires:	gettext-devel
+BuildRequires:	gtk+2-devel
+BuildRequires:	intltool
 BuildRequires:	libpng-devel
+BuildRequires:	libtool
 BuildRequires:	pango-devel
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
