@@ -4,7 +4,7 @@
 Summary:	gcolor2 is a simple color selector
 Name:		gcolor2
 Version:	0.4
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/project/gcolor2/gcolor2/0.4/%{name}-%{version}.tar.bz2
