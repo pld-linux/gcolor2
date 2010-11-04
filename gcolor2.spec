@@ -4,12 +4,13 @@
 Summary:	gcolor2 is a simple color selector
 Name:		gcolor2
 Version:	0.4
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/project/gcolor2/gcolor2/0.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	223a126b8a87234d1552be4be4140789
 Source1:	%{name}.desktop
+Patch0:		%{name}-missing-includes.patch
 URL:		http://gcolor2.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -30,6 +31,7 @@ gcolor, ported to use GTK+2, and now has a completely new UI.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__intltoolize}
@@ -39,6 +41,7 @@ gcolor, ported to use GTK+2, and now has a completely new UI.
 %{__autoconf}
 %{__automake}
 %configure
+
 %{__make}
 
 %install
