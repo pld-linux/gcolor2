@@ -16,7 +16,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	freetype-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gtk+2-devel
 BuildRequires:	intltool
 BuildRequires:	libpng-devel
