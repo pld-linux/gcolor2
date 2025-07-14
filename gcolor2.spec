@@ -31,7 +31,7 @@ gcolor, ported to use GTK+2, and now has a completely new UI.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__intltoolize}
