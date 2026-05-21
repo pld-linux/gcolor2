@@ -1,7 +1,5 @@
-Nur in gcolor2-0.4/po: potfiles.
-diff -dur gcolor2-0.4.orig/src/callbacks.c gcolor2-0.4/src/callbacks.c
---- gcolor2-0.4.orig/src/callbacks.c	2005-07-12 20:06:12.000000000 +0200
-+++ gcolor2-0.4/src/callbacks.c	2009-10-03 13:56:41.000000000 +0200
+--- gcolor2-0.4.orig/src/callbacks.c	2026-05-21 01:35:47.042541678 +0200
++++ gcolor2-0.4/src/callbacks.c	2026-05-21 01:35:47.046792016 +0200
 @@ -9,6 +9,8 @@
  #include "interface.h"
  #include "support.h"
@@ -11,10 +9,36 @@ diff -dur gcolor2-0.4.orig/src/callbacks.c gcolor2-0.4/src/callbacks.c
  
  GtkWidget        *savedialog;
  gchar            *colorname;
-diff -dur gcolor2-0.4.orig/src/main.c gcolor2-0.4/src/main.c
---- gcolor2-0.4.orig/src/main.c	2005-07-11 16:55:49.000000000 +0200
-+++ gcolor2-0.4/src/main.c	2009-10-03 13:59:32.000000000 +0200
-@@ -8,6 +8,9 @@
+--- gcolor2-0.4.orig/src/callbacks.h	2026-05-21 01:35:47.042513447 +0200
++++ gcolor2-0.4/src/callbacks.h	2026-05-21 01:37:07.086219023 +0200
+@@ -41,9 +41,9 @@
+                            "\302\267 Usability / user interface enhancements\n" \
+                            "\302\267 Code cleanup"
+ 
+-GtkWidget *gcolor2;
+-GtkWidget *menu;
+-GdkColor   colorvalue;
++extern GtkWidget *gcolor2;
++extern GtkWidget *menu;
++extern GdkColor   colorvalue;
+ 
+ enum
+ {
+@@ -55,6 +55,11 @@
+ };
+ 
+ gchar* get_user_file();
++gchar* get_system_file();
++
++void add_rgb_file (gchar *filename, gchar *type);
++
++void add_list_color (gchar *spec, gchar *name, gchar *type, gboolean is_new_color);
+ 
+ void show_file_error (gchar* message);
+ 
+--- gcolor2-0.4.orig/src/main.c	2026-05-21 01:35:47.042373544 +0200
++++ gcolor2-0.4/src/main.c	2026-05-21 01:37:18.907509060 +0200
+@@ -8,11 +8,17 @@
  #include "interface.h"
  #include "support.h"
  #include "callbacks.h"
@@ -24,7 +48,15 @@ diff -dur gcolor2-0.4.orig/src/main.c gcolor2-0.4/src/main.c
  
  GtkListStore *liststore;
  GdkWindow    *gdkwin;
-@@ -48,8 +51,6 @@
+ gchar        *user_filename;
+ gchar        *sys_filename;
++GtkWidget    *gcolor2;
++GtkWidget    *menu;
++GdkColor      colorvalue;
+ 
+ 
+ void set_user_file ()
+@@ -48,8 +54,6 @@
  
  void add_list_color (gchar *spec, gchar *name, gchar *type, gboolean is_new_color)
  {
@@ -33,7 +65,7 @@ diff -dur gcolor2-0.4.orig/src/main.c gcolor2-0.4/src/main.c
  	GdkPixbuf   *buf;
  	GtkTreeIter  iter;
  	
-@@ -103,7 +104,7 @@
+@@ -103,7 +107,7 @@
  	gchar *name;
  	gchar  buffer[512];
  	gchar  spec[8];
@@ -42,7 +74,7 @@ diff -dur gcolor2-0.4.orig/src/main.c gcolor2-0.4/src/main.c
  	
  	fp = fopen (filename, "r");
  	if (!fp)
-@@ -140,7 +141,6 @@
+@@ -140,7 +144,6 @@
  	GtkTreeViewColumn *column;
  	GtkWidget         *treeview;
  	GtkTreeSelection  *select;
